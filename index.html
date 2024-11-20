@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flipkart PLP and PDP clone</title>
+    <style>
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  header {
+    background-color: #2874f0;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .search-bar {
+    flex-grow: 1;
+    margin: 0 20px;
+    padding: 8px;
+  }
+  
+  .header-right a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+  }
+  
+
+  .banner {
+    background-color: #f0c14b;
+    padding: 50px;
+    text-align: center;
+  }
+  
+  .banner h1 {
+    font-size: 48px;
+    color: #2874f0;
+  }
+  
+  .banner p {
+    font-size: 18px;
+    color: #333;
+  }
+
+  .product-list {
+    padding: 20px;
+  }
+  
+  .product-list h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .products {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin: 10px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  .product-card img {
+    width: 100%;
+  }
+  
+  .product-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  
+  .product-card p {
+    font-size: 16px;
+    color: #666;
+  }
+
+  .cart {
+    padding: 20px;
+  }
+  
+  .cart h2 {
+    margin-bottom: 20px;
+  }
+  
+  .cart-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+  }
+  
+  .cart-item img {
+    width: 100px;
+  }
+  
+  .cart-item div {
+    flex-grow: 1;
+    margin-left: 15px;
+  }
+  .main{
+    display: flex;
+    flex-direction: row;
+    padding: auto;
+  }
+  #log{
+    border: 2px solid rgb(253, 248, 248);
+    width: 10px;
+    padding: 10px;
+    margin: 10px;
+    background-color:rgb(62, 62, 252);
+    text: blue;
+  }.add{
+    padding: 10px;
+    margin: 10px;
+  }
+
+    </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">Flipkart</div>
+    <input type="text" class="search-bar" placeholder="Search for product,brand and more..">
+    <div class="header-right">
+      <a id="log" href="#">Login</a>
+      <a href="#contact">Become a Seller</a>
+      <a href="#news">More</a>
+      <a href="#about">Cart</a>
+    </div>
+  </header>
+
+  <main class="main">
+  <div class="product-details">
+    <img id="product-image" src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/h/d/9/-original-imagtc2qzgnnuhxh.jpeg?q=70" alt="Product Image">
+    <h2 id="product-name">Apple iPhone 15 (Black, 128 GB)</h2>
+    <p><strong>Price:</strong> <span id="product-price"></span>₹ 57999</p>
+        <p>4.62,14,894 Ratings & 7,581 Reviews</p>
+        <p > 128 GB ROM</p>
+        <p >15.49 cm (6.1 inch) Super Retina XDR Display</p>
+        <p >48MP + 12MP | 12MP Front Camera</p>
+        <p > A16 Bionic Chip, 6 Core Processor Processor</p> 
+        <p >  1 year warranty for phone and 1 year warranty for in Box Accessories.</p>
+   
+    <button  class="add"onclick="addToCart()">Add to Cart</button>
+  </div>
+  <div class="product-details">
+    <img id="product-image" src="https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/w/3/4/-original-imahyytukhkky5ew.jpeg?q=70" alt="Product Image">
+    <p><strong>Price:</strong> <span id="product-price"></span>₹ 37999</p>
+    <h2 id="product-name">vivo T3x 5G (Celestial Green, 128 GB)</h2>
+    <p >6 GB RAM | 128 GB ROM | Expandable Upto 1 TB</p>
+    <p > 17.07 cm (6.72 inch) Full HD+ Display</p>
+    <p >50MP + 2MP | 8MP Front Camera </p>
+    <p >6000 mAh Battery </p>
+    <p>  6 Gen 1 Processor</p>
+    <p> 1 Year Manufacturer Warranty for Device and 6 Months Manufacturer Warranty for Inbox Accessories</p>
+    <button  class="add" onclick="addToCart()">Add to Cart</button>
+  </div>
+</main>
+
+  <div class="product-list">
+    <h2>Featured Products</h2>
+    <div class="products" id="products">
+    </div>
+  </div>
+  
+ 
+  <div class="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items">
+    </div>
+    <button onclick="checkout()">Proceed to Checkout</button>
+  </div>
+  <div class="banner">
+    <h1>Top Selling Smartphone.......!</h1>
+    <p>Shop the best deals on electronics, fashion, and more.</p>
+  </div>
+
+  <script>
+    const products = [
+    {
+      id: 1,
+      name: 'Smartphone',
+      description: 'Latest model with high-end specs.',
+      price: 15000,
+      image: 'https://rukminim2.flixcart.com/image/312/312/xif0q/mobile/y/2/o/-original-imah4sss2hjckcdk.jpeg?q=70',
+    },
+    {
+      id: 2,
+      name: 'Laptop',
+      description: 'Powerful laptop for all your needs.',
+      price: 45000,
+      image: 'https://rukminim2.flixcart.com/image/312/312/xif0q/computer/l/h/1/inspiron-3520-thin-and-light-laptop-dell-original-imahyggypmfkkpnf.jpeg?q=70',
+    },
+
+  ];
+  
+  const cart = [];
+  
+
+  const productsContainer = document.getElementById('products');
+  if (productsContainer) {
+    products.forEach(product => {
+      const productCard = `
+        <div class="product-card">
+          <img src="${product.image}" alt="${product.name}">
+          <h3>${product.name}</h3>
+          <p>${product.price} ₹</p>
+          <a href="product.html?id=${product.id}">View Details</a>
+        </div>
+      `;
+      productsContainer.innerHTML += productCard;
+    });
+  }
+  
+  function checkout() {
+    alert('empty cart.');
+  }
+  </script>
+</body>
+</html>
